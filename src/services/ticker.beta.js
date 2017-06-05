@@ -8,4 +8,4 @@ const ticker = (book = '') => {
     });
 };
 
-module.exports = { ticker };
+module.exports = ticker;

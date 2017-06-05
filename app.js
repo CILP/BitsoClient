@@ -5,7 +5,7 @@ availableBooks()
     .filter(b => !!~b.book.indexOf('mxn'))
     .map(b => b.book)
     .subscribe(book => {
-        ticker.ticker(book).subscribe(tick => {
+        ticker(book).subscribe(tick => {
             console.log(tick);
         });
     });
