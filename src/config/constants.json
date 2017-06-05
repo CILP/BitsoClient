@@ -1,0 +1,6 @@
+{
+    "bitso": {
+        "BASE_URL": "api.bitso.com",
+        "API_VERSION": "v3"
+    }
+}
