@@ -1,11 +1,11 @@
 const httpClient = require('../shared/httpClient');
 const config = require('../shared/getConfiguration')('./src/config/constants.json', 'utf8');
 
-const ticker = (book = '') => {
+const availableBooks = () => {
     return httpClient({
         host: config.bitso.BASE_URL,
-        path: `/${config.bitso.API_VERSION}/ticker?book=${book}`
+        path: `/${config.bitso.API_VERSION}/available_books`
     });
 };
 
-module.exports = { ticker };
+module.exports = availableBooks

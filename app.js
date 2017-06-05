@@ -1,13 +1,11 @@
-const books = require('./src/services/availableBooks');
+const availableBooks = require('./src/services/availableBooks.beta');
 const ticker = require('./src/services/ticker.beta');
 
-books.availableBooks()
+availableBooks()
     .filter(b => !!~b.book.indexOf('mxn'))
     .map(b => b.book)
     .subscribe(book => {
-        console.log(book);
+        ticker.ticker(book).subscribe(tick => {
+            console.log(tick);
+        });
     });
-
-ticker.ticker('btc_mxn').subscribe(tick => {
-    console.log(tick);
-});

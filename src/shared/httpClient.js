@@ -39,4 +39,4 @@ const httpClient = (url) => {
     });
 };
 
-module.exports = { httpClient };
+module.exports = httpClient;
