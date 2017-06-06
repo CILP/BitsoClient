@@ -1,21 +1,16 @@
 const http = require('http'),
     Rx = require('rxjs/Rx');
 
-const httpClient = (url) => {
+const httpClient = (options = {}) => {
     return Rx.Observable.create(observer => {
-        http.get({
-            host: url.host,
-            path: url.path
-        }, response => {
+        
+        const request = http.request(options, response => {
             response.setEncoding('utf8');
-            let chunks = [];
+
+            const chunks = [];
 
             Rx.Observable.fromEvent(response, 'data').subscribe(chunk => {
                 chunks.push(chunk);
-            });
-
-            Rx.Observable.fromEvent(response, 'error').subscribe(error => {
-                observer.error(error);
             });
 
             Rx.Observable.fromEvent(response, 'end').subscribe(() => {
@@ -36,6 +31,16 @@ const httpClient = (url) => {
                 observer.complete();
             });
         });
+
+        Rx.Observable.fromEvent(request, 'error').subscribe(error => {
+            observer.error(error);
+        });
+
+        if (options.postData) {
+            request.write(options.postData);
+        }
+
+        request.end();
     });
 };
 

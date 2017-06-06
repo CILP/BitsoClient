@@ -1,5 +1,5 @@
-const availableBooks = require('./src/services/availableBooks.beta');
-const ticker = require('./src/services/ticker.beta');
+const availableBooks = require('./src/services/availableBooks');
+const ticker = require('./src/services/ticker');
 
 availableBooks()
     .filter(b => !!~b.book.indexOf('mxn'))
