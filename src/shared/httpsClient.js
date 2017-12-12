@@ -1,10 +1,10 @@
-const http = require('http'),
+const https = require('https'),
     Rx = require('rxjs/Rx');
 
-const httpClient = (options = {}) => {
+const httpsClient = (options = {}) => {
     return Rx.Observable.create(observer => {
         
-        const request = http.request(options, response => {
+        const request = https.request(options, response => {
             response.setEncoding('utf8');
 
             const chunks = [];
@@ -44,4 +44,4 @@ const httpClient = (options = {}) => {
     });
 };
 
-module.exports = httpClient;
+module.exports = httpsClient;

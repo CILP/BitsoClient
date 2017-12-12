@@ -1,5 +1,5 @@
-const httpClient = require('../shared/httpClient');
-const config = require('../shared/getConfiguration')('./src/config/constants.json', 'utf8');
+const httpClient = require('../../shared/httpsClient');
+const config = require('../../shared/getConfiguration')('./src/config/constants.json', 'utf8');
 
 const availableBooks = () => {
     return httpClient({
